@@ -1,26 +1,29 @@
-import java.math.BigInteger;
-
 public class TimeUtils {
+    private static int hh;
+    private static int mm;
+    private static int ss;
+
+    public TimeUtils() {
+    }
 
     public static int timeToSec(String time) {
         String[] part = time.split(":");
-        int hh = Integer.parseInt(part[0]);
-        int mm = Integer.parseInt(part[1]);
-        int ss = Integer.parseInt(part[2]);
+        hh = Integer.parseInt(part[0]);
+        mm = Integer.parseInt(part[1]);
+        ss = Integer.parseInt(part[2]);
 
         return 3600 * hh + 60 * mm + ss;
     }
 
-    public static String secToTime(int a) {
-        int hh, mm, ss;
-        if (a < 0 || a > 32000) {
+    public static String secToTime(int seconds) {
+        if (seconds < 0 || seconds > 32000) {
             return "-1";
         }
 
-        hh = a / 3600;
-        a = a - (3600 * hh);
-        mm = a / 60;
-        ss = a - (60 * mm);
+        hh = seconds / 3600;
+        seconds = seconds - (3600 * hh);
+        mm = seconds / 60;
+        ss = seconds - (60 * mm);
 
         String res = hh + ":";
         if (mm < 10) {
